@@ -4,7 +4,7 @@
 
 ## Forms
 
-### [Part_1](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_1) - Access to forms
+### Access to forms - [Part_1](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_1)
 
 #### Explanation:
 The HTML code (index.html) is a simple login form with an input field for the user name, a password field for entering a password, a checkbox for saving the entered login data and a button for submitting the form.
