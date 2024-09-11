@@ -19,7 +19,7 @@ The methods `getElementById()` and `querySelector()` can be used to clearly sele
 
 Forms provide many properties: The `elements` property, which can be used to access the individual form elements contained in the form. The `name` property, which contains the name of the form and the `action` and `method` properties, which contain information about which action is to be triggered with the form (or to which URL the form data is to be sent) and which HTTP method is to be used (`GET` or `POST`).
 
- <img src="images/FormsJS_Part_1.png" width="500">
+ <img src="images/FormsJS_Part_1.png" width="900">
 
 
 ### Part_2 - Access to form elements
