@@ -25,4 +25,4 @@ function init() {
   
   document.addEventListener('DOMContentLoaded', init);
   
-// More information on this code can be found in the documentation (README.md)
+// More information on this code can be found in the documentation (README.md --> Forms - Part_1)
