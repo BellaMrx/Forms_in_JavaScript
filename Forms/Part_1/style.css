@@ -1,0 +1,22 @@
+body, div, input {
+    padding: 5px;
+}
+
+label {
+    font-size: large;
+}
+
+input, button {
+    border-radius: 4px;
+}
+
+button {
+    padding: 5px;
+    background-color: greenyellow;
+    width: 180px;
+}
+
+.checkbox, label {
+    width: 40%;
+}
+
