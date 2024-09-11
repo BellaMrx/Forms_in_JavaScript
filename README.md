@@ -6,7 +6,7 @@
 
 ### Part_1 - Access to forms
 
- [Part_1 - Code](https://github.com/BellaMrx/...nochAnpassen!!!!)
+ [Part_1 - Code](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_1)
 
 #### Explanation:
 The HTML code (index.html) is a simple login form with an input field for the user name, a password field for entering a password, a checkbox for saving the entered login data and a button for submitting the form.
@@ -19,12 +19,12 @@ The methods `getElementById()` and `querySelector()` can be used to clearly sele
 
 Forms provide many properties: The `elements` property, which can be used to access the individual form elements contained in the form. The `name` property, which contains the name of the form and the `action` and `method` properties, which contain information about which action is to be triggered with the form (or to which URL the form data is to be sent) and which HTTP method is to be used (`GET` or `POST`).
 
- <img src="images/FormsJS_Part_1.png" width="700">
+ <img src="images/FormsJS_Part_1.png" width="500">
 
 
 ### Part_2 - Access to form elements
 
- [Part_2 - Code](https://github.com/BellaMrx/...nochAnpassen!!!!)
+ [Part_2 - Code](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_2)
 
  Part_2 --> listing 7.4.
 
