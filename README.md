@@ -74,7 +74,7 @@ Forms provide many properties: The `elements` property, which can be used to acc
 
 -----------------------------------------------------------------------
 
-### Access to form elements - [Part_2 - Code](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_2)
+### Access to form elements - [Part_2](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_2)
 
 #### Explanation:
 This example shows the various options for accessing individual form elements within a form.
