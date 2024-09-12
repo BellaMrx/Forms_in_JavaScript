@@ -79,7 +79,8 @@ Forms provide many properties: The `elements` property, which can be used to acc
 #### Explanation:
 This example shows the various options for accessing individual form elements within a form.
 
-This JavaScript code ([script.js](https://github.com/BellaMrx/Forms_in_JavaScript/blob/main/Forms/Part_1/script.js)) contains a list of the form elements that are contained within the respective form. The `elements` property is available for each form object and individual elements in this list are accessed via the index, which also reflects the position of the respective element within the form. The selection via the DOM selection methods works in the same way as in [Part_1](https://github.com/BellaMrx/Forms_in_JavaScript?tab=readme-ov-file#access-to-forms). Access via the DOM selection methods is best protected against changes to the HTML code.
+This JavaScript code ([script.js](https://github.com/BellaMrx/Forms_in_JavaScript/blob/main/Forms/Part_1/script.js)) contains a list of the form elements that are contained within the respective form. The `elements` property is available for each form object and individual elements in this list are accessed via the index, which also reflects the position of the respective element within the form. The selection via the DOM selection methods works in the same way as in 
+[Part_1](https://github.com/BellaMrx/Forms_in_JavaScript?tab=readme-ov-file#access-to-forms---part_1). Access via the DOM selection methods is best protected against changes to the HTML code.
 
   ```
     // Access via DOM selection methods
