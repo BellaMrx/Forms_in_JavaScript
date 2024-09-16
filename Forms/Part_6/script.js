@@ -1,30 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Access to the selected value of a selection list</title>
-    <style>
-        body {
-            padding: 5px;
-        }
-    </style>
-</head>
-<body>
-  <form id="orderform" name="orderform" class="form">
-    <select id="order" name="order" class="form-control">
-      <option selected value="P001">Pizza pepperoni</option>
-      <option value="P002">Pizza marguerite</option>
-      <option value="P003">Pizza cheese</option>
-      <option value="P004">Pizza mozzarella</option>
-      <option value="P005">Pizza hawaii</option>
-    </select>
-  </form>
-  <div class="form">
-    Choice:
-    <div id="selection">
-    </div>
-  </div>
-  <script>
 function init() {
     const messageContainer = document.getElementById('selection');      // Container for messages
     const order = document.getElementById('order');                     // <select>-element
@@ -45,6 +18,3 @@ function init() {
   
   document.addEventListener('DOMContentLoaded', init);
   
-  </script>
-</body>
-</html>

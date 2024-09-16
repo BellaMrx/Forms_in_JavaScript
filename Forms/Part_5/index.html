@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Access to the radio buttons of a group</title>
+    <style>
+        body {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+  <form id="orderform" name="orderform" class="form">
+    <div class="form-group">
+      <input type="radio" id="P001" name="order" value="P001">
+        <label for="P001">Pizza pepperoni</label>
+    </div>
+    <div class="form-group">
+      <input type="radio" id="P002" name="order" value="P002">
+        <label for="P002">Pizza marguerite</label>
+    </div>
+    <div class="form-group">
+      <input type="radio" id="P003" name="order" value="P003">
+        <label for="P003">Pizza cheese</label>
+    </div>
+    <div class="form-group">
+      <input type="radio" id="P004" name="order" value="P004">
+        <label for="P004">Pizza mozzarella</label>
+    </div>
+    <div class="form-group">
+      <input type="radio" id="P005" name="order" value="P005">
+        <label for="P005">Pizza hawaii</label>
+    </div>
+  </form>
+  <div class="form">
+    Choice:
+    <div id="selection">
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

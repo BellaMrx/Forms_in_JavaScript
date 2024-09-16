@@ -209,5 +209,116 @@ Here, the value of the checkbox can be accessed via the `value` property (by def
 
 -----------------------------------------------------------------------
 
+### Read the value of radio buttons - [Part_5](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_5)
 
+#### Explanation:
+Here you can see how the individual radio buttons can be accessed within a group. The easiest way to do this is via the property of the form, which has the same name as the radio button group (here `order`). All radio buttons in the group are stored as a list in this property. It is iterated over this list and an event listener is registered for each radio button. This in turn ensures that when a radio button is selected (whereby a `change` event is triggered), the value of the selected radio button (property `value`) is written to the `<div>` element with the ID `selection`.
+
+  ```
+   <body>
+     <form id="orderform" name="orderform" class="form">
+       <div class="form-group">
+         <input type="radio" id="P001" name="order" value="P001">
+           <label for="P001">Pizza pepperoni</label>
+       </div>
+       <div class="form-group">
+         <input type="radio" id="P002" name="order" value="P002">
+           <label for="P002">Pizza marguerite</label>
+       </div>
+       <div class="form-group">
+         <input type="radio" id="P003" name="order" value="P003">
+           <label for="P003">Pizza cheese</label>
+       </div>
+       <div class="form-group">
+         <input type="radio" id="P004" name="order" value="P004">
+           <label for="P004">Pizza mozzarella</label>
+       </div>
+       <div class="form-group">
+         <input type="radio" id="P005" name="order" value="P005">
+           <label for="P005">Pizza hawaii</label>
+       </div>
+     </form>
+     <div class="form">
+       Choice:
+       <div id="selection">
+       </div>
+     </div>
+     <script>
+   function init() {
+       const messageContainer = document.getElementById('selection');   // Container for messages
+       const orderForm = document.getElementById('orderform');          // Form
+       // const order = document.forms.orderform.order;                 // Alternative
+       const radioButtons = orderForm.order;
+       for(let i=0; i<radioButtons.length; i++) {
+         radioButtons[i].addEventListener('change', function(e) {
+           console.log(e.target.value);                    // e.g. "P002"
+           console.log(this.value);                        // e.g. "P002"
+           messageContainer.innerText = this.value;        // Display message
+         });
+       }
+     }
+  
+     document.addEventListener('DOMContentLoaded', init);
+     </script>
+   </body>
+  ```
+
+ <img src="images/FormsJS_Part_5.png" width="900">
+
+ [Complete code - Part_5 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_5)
+
+-----------------------------------------------------------------------
+
+### Read the value of selection lists - [Part_6](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_6)
+
+#### Explanation:
+With selection lists, it is possible to react to changes via the `change` event. This event is always triggered when a value is selected in the selection list. The `value` property is also used to access the selected value. The function `updateOrder()` is registered here as an event listener for the `change` event.
+Selection lists have the `selectedIndex` property, which contains the index of the selected option. This index can be used to access the corresponding selection element via the `item()` method. Each selection element has two properties that can be used to read the value of the underlying `<option>` element (`value`) and the text (`text`).
+
+  ```
+   <body>
+     <form id="orderform" name="orderform" class="form">
+       <select id="order" name="order" class="form-control">
+         <option selected value="P001">Pizza pepperoni</option>
+         <option value="P002">Pizza marguerite</option>
+         <option value="P003">Pizza cheese</option>
+         <option value="P004">Pizza mozzarella</option>
+         <option value="P005">Pizza hawaii</option>
+       </select>
+     </form>
+     <div class="form">
+       Choice:
+       <div id="selection">
+       </div>
+     </div>
+     <script>
+   function init() {
+       const messageContainer = document.getElementById('selection');      // Container for messages
+       const order = document.getElementById('order');                     // <select>-element
+       // const order = document.forms.orderform.order;                    // Alternative
+       order.addEventListener('change', updateOrder);                      // Register listener
+  
+       function updateOrder(event) {                       // this is from ...
+                                                        // ... type HTMLSelectElement
+         const value = this.value;                         // The currently selected value
+         const index = this.selectedIndex;                 // Index of the selected option
+         const option = this.item(index);                  // Selected <option> element
+         const text = this.item(index).text;               // Text of the <option> element
+         // value = this.item(index).value                 // Also contains the value
+         const message = text + ' (' + value + ')';        // Create message
+         messageContainer.innerText = message;             // Display message
+       }
+     }
+  
+     document.addEventListener('DOMContentLoaded', init);
+  
+     </script>
+   </body>
+  ```
+
+ <img src="images/FormsJS_Part_6.png" width="500">
+
+ [Complete code - Part_6 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_6)
+
+-----------------------------------------------------------------------
 
