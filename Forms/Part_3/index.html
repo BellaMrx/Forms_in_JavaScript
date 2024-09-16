@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Access to form elements</title>
+</head>
+<body>
+<form id="login" name="login" method="post" action="login.html">
+  <p><input type="text" id="username" name="username" value="" placeholder="Username"></p>
+  <p><input type="password" id="password" name="password" value="" placeholder="Password"></p>
+  <p>
+    <label for="remember">
+      <input type="checkbox" id="remember" name="remember" value="on">
+      Remember login on this computer
+    </label>
+  </p>
+  <p class="submit">
+    <input type="submit" id="submit" name="submit" value="Login">
+  </p>
+</form>
+<script src="script.js"></script>
+</body>
+</html>

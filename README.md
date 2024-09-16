@@ -70,7 +70,7 @@ Forms provide many properties: The `elements` property, which can be used to acc
 
  <img src="images/FormsJS_Part_1.png" width="900">
 
-[Complete code - Part_1 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_1)
+ [Complete code - Part_1 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_1)
 
 -----------------------------------------------------------------------
 
@@ -114,3 +114,68 @@ Each form element is represented by a special object type. Text fields, password
  [Complete code - Part_2 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_2)
 
 -----------------------------------------------------------------------
+
+### Read the value of text fields and password fields - [Part_3](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_3)
+
+#### Explanation:
+To access the value of a text field, the `value` property of the corresponding element can be used:
+
+  ```
+    const inputUsername = document.getElementById('username');
+    const inputPassword = document.getElementById('password');
+  
+    inputUsername.addEventListener('change', function(e) {
+      console.log(inputUsername.value);     // Input value
+      console.log(this.value);              // Input value
+    });
+    inputPassword.addEventListener('change', function(e) {
+      console.log(inputPassword.value);     // Input value
+      console.log(this.value);              // Input value
+    });
+  ```
+
+Both input fields (text field and password field) are accessed here, and an event listener is registered for the `change` event in each case, which is triggered whenever the value of an input field changes.
+Within the event listener, the keyword `this` is used to access the respective element at which the event listener was triggered. This means that the element for which an event listener has been registered represents its quoting context. In addition, the text stored in the 'value' property is visible and, as with the password field, is stored in plain text, i.e. not encrypted. Text fields and password fields are of type `HTMLInputElement`.
+
+ <img src="images/FormsJS_Part_3.png" width="900">
+
+When using `this` within an event listener, however, it must be taken into account that if the event listener was formulated as an array function, `this` does not refer to the element on which the event listener was defined, but to the context in which the array function was defined. There are two other options for accessing a form element within an event listener that has been defined as an arrow function:
+
+1. The corresponding form element can be buffered in a variable and accessed:
+
+  ```
+    const inputUsername = document.getElementById('username');
+    const inputPassword = document.getElementById('password');
+  
+    inputUsername.addEventListener('change', (e) => {
+      console.log(inputUsername.value);     // Input value
+      console.log(this.value);              // undefined
+    });
+    inputPassword.addEventListener('change', (e) => {
+      console.log(inputPassword.value);     // Input value
+      console.log(this.value);              // undefined
+    });
+  ```
+
+2. The event object can be used to access the respective form element:
+
+  ```
+    const inputUsername = document.getElementById('username');
+    const inputPassword = document.getElementById('password');
+  
+    inputUsername.addEventListener('change', (e) => {
+      console.log(inputUsername.value);     // Input value
+      console.log(e.target.value);          // Input value
+    });
+    inputPassword.addEventListener('change', (e) => {
+      console.log(inputPassword.value);     // Input value
+      console.log(e.target.value);          // Input value
+    });
+  ```
+
+ <img src="images/FormsJS_Part_3b.png" width="900">
+
+ [Complete code - Part_3 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_3)
+
+-----------------------------------------------------------------------
+
