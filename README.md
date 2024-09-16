@@ -179,3 +179,35 @@ When using `this` within an event listener, however, it must be taken into accou
 
 -----------------------------------------------------------------------
 
+### Read the value of checkboxes - [Part_4](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_4)
+
+#### Explanation:
+Here, the value of the checkbox can be accessed via the `value` property (by default, this property has the value `on`). To check whether the checkbox has been selected, the `checked` property is used, which returns a corresponding Boolean value.
+
+  ```
+    const checkbox = document.getElementById('remember');
+    checkbox.addEventListener('change', function(e) {
+      console.log(checkbox.value);    // "on"
+      console.log(checkbox.checked);  // true or false
+      console.log(this.value);        // "on"
+      console.log(this.checked);      // true or false
+    });
+
+    // or as arrow function
+
+    checkbox.addEventListener('change', (e) => {
+      console.log(checkbox.value);    // "on"
+      console.log(checkbox.checked);  // true or false
+      console.log(this.value);        // undefined
+      console.log(this.checked);      // undefined
+    });
+  ```
+
+ <img src="images/FormsJS_Part_4.png" width="900">
+
+ [Complete code - Part_4 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_4)
+
+-----------------------------------------------------------------------
+
+
+
