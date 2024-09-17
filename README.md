@@ -2,7 +2,7 @@
  Forms with JavaScript
 
 
-## Forms
+## Accessing forms and form fields
 
 ### Access to forms - [Part_1](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_1)
 
@@ -319,6 +319,85 @@ Selection lists have the `selectedIndex` property, which contains the index of t
  <img src="images/FormsJS_Part_6.png" width="500">
 
  [Complete code - Part_6 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_6)
+
+-----------------------------------------------------------------------
+
+### Read the values from multiple selection lists - [Part_7](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_7)
+
+#### Explanation:
+The `multiple` attribute can be used to define selection lists in HTML in which several words can be selected, these are so-called *multiple selection lists*.
+
+  ```
+   ...
+    <select id="order" name="order" class="form-control" multiple>
+      <option selected value="P001">Pizza pepperoni</option>
+      <option value="P002">Pizza marguerite</option>
+      <option value="P003">Pizza cheese</option>
+      <option value="P004">Pizza mozzarella</option>
+      <option value="P005">Pizza hawaii</option>
+    </select>
+   ...
+
+   ...
+       function updateOrder(event) {
+         while (messageContainer.firstChild) {             // Delete all messages
+           messageContainer.removeChild(
+             messageContainer.firstChild
+           );
+         }
+         const options = this.selectedOptions;             // Selected options
+         for (let i = 0; i < options.length; i++) {        // For each option ...
+           const message = options[i].text                 // ... message ...
+             + ' (' + options[i].value + ')';              // ... generate ...
+           const div = document.createElement('div');      // ... and the ...
+           const optionText = document.createTextNode(message);                     
+           div.appendChild(optionText);                    
+           messageContainer.appendChild(div);              // ... add container.
+         }
+       }
+   ...
+  ```
+
+The property `selectedOptions` is used here, which contains a list of the selected values, namely an object of the type `HTMLCollection`, which in turn contains objects of the type `HTMLOptionElement`.
+
+ <img src="images/FormsJS_Part_7.png" width="500">
+
+ [Complete code - Part_7 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_7)
+
+-----------------------------------------------------------------------
+
+### Fill selection lists with values using JavaScript - [Part_8](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_8)
+
+#### Explanation:
+In some cases, it can be helpful to generate the options within a selection list dynamically using JavaScript. To do this, it is possible to simply create new object instances of the type `option` and add these to the corresponding selection list using the `add()` method
+
+  ```
+    var messageContainer = document.getElementById('selection');
+    var order = document.getElementById('order');
+    var options = [
+      {name: 'Pizza pepperoni', id: 'P001'},
+      {name: 'Pizza marguerite', id: 'P002'},
+      {name: 'Pizza cheese', id: 'P003'},
+      {name: 'Pizza mozzarella', id: 'P004'},
+      {name: 'Pizza hawaii', id: 'P005'}
+    ];
+    for(var i=0; i<options.length; i++) {
+      order.add(
+        new Option(              // Constructor for <option> elements
+          options[i].name,       // Text to be displayed
+          options[i].id,         // Optional value associated with the selection
+          false,                 // Optional specification of whether value is preselected
+          false                  // Optional specification of whether value is preselected
+        )
+      );
+    }
+  ```
+
+Here, based on the `options` array, which contains various objects, an entry is generated for each of these objects using a counter loop and added to the list.
+
+ <img src="images/FormsJS_Part_8.png" width="500">
+
+ [Complete code - Part_8 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_8)
 
 -----------------------------------------------------------------------
 

@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Adding options to a selection list via JavaScript</title>
-</head>
-<body>
-  <form name="orderform">
-    <select id="order" name="order" size="4" multiple>
-    </select>
-  </form>
-  <div>
-    Choice:
-    <div id="selection">
-
-    </div>
-  </div>
-  <script>
 function init() {
     var messageContainer = document.getElementById('selection');
     var order = document.getElementById('order');
@@ -54,6 +36,4 @@ function init() {
   }
   
   document.addEventListener('DOMContentLoaded', init);
-  </script>
-</body>
-</html>
+  
