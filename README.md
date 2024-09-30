@@ -453,4 +453,4 @@ The programmatic resetting of a form:
 
 It should be noted that submitting a form using the `submit()` method does not work if there is an element with the name `submit` in the form. This is because you can also access the individual form elements within a form using the name.
 
- <img src="images/FormsJS_Part_9a.png" width="420"> <img src="images/FormsJS_Part_9b.png" width="420">
+ <img src="images/FormsJS_Part_9a.png" width="500"> <img src="images/FormsJS_Part_9b.png" width="500">
