@@ -401,7 +401,7 @@ Here, based on the `options` array, which contains various objects, an entry is 
 
 -----------------------------------------------------------------------
 
-## Send and reset forms programmatically via JavaScript
+## Send and reset forms programmatically via JavaScript - [Part_9](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_9)
 
 #### Explanation:
 It is possible to submit forms programmatically using JavaScript. The `submit()` method is available for form objects for this purpose. In addition, the `reset()` method can be used to reset the values entered in a form. 
@@ -449,10 +449,8 @@ The programmatic resetting of a form:
    });
   ```
 
+ [Complete code - Part_9 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_9)
+
 It should be noted that submitting a form using the `submit()` method does not work if there is an element with the name `submit` in the form. This is because you can also access the individual form elements within a form using the name.
 
- <img src="images/FormsJS_Part_9a.png" width="500">
-
- <img src="images/FormsJS_Part_9b.png" width="500">
-
- [Complete code - Part_9 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_9)
+ <img src="images/FormsJS_Part_9a.png" width="420"> <img src="images/FormsJS_Part_9b.png" width="420">
