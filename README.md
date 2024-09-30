@@ -401,3 +401,58 @@ Here, based on the `options` array, which contains various objects, an entry is 
 
 -----------------------------------------------------------------------
 
+## Send and reset forms programmatically via JavaScript
+
+#### Explanation:
+It is possible to submit forms programmatically using JavaScript. The `submit()` method is available for form objects for this purpose. In addition, the `reset()` method can be used to reset the values entered in a form. 
+
+  ```
+   <form id="login" name="login" method="post" action="login.html" class="form col-xs-4 center-block">
+     <div class="form-group">
+       <label for="username">Username:</label>
+       <input type="text" id="username" name="username" class="form-control" value="" placeholder="Username">
+     </div>
+     <div class="form-group">
+       <label for="password">Password:</label>
+       <input type="password" id="password" name="password" class="form-control" value="" placeholder="Password">
+     </div>
+     <div class="checkbox">
+       <label for="remember">
+         <input type="checkbox" id="remember" name="remember" value="on">
+         Remember login on this computer
+       </label>
+     </div>
+     <span type="submit" id="submit" name="submit" class="btn btn-primary btn-block">Login</span>
+     <span type="reset" id="reset" name="reset" class="btn btn-default btn-block">Reset</span>
+   </form>
+  ```
+
+This is a simple registration form, the standard buttons have been replaced by two `<span>` elements. The form can be submitted by calling the `submit()` method and can be reset with `Reset`.
+
+The programmatic sending of a form:
+
+  ```
+   const loginForm = document.getElementById('login');
+   const loginButton = document.getElementById('submit');
+   loginButton.addEventListener('click', (e) => {
+     loginForm.submit();
+   });
+  ```
+
+The programmatic resetting of a form:
+
+  ```
+   const loginForm = document.getElementById('login');
+   const resetButton = document.getElementById('reset');
+   resetButton.addEventListener('click', (e) => {
+     loginForm.reset();
+   });
+  ```
+
+It should be noted that submitting a form using the `submit()` method does not work if there is an element with the name `submit` in the form. This is because you can also access the individual form elements within a form using the name.
+
+ <img src="images/FormsJS_Part_9a.png" width="500">
+
+ <img src="images/FormsJS_Part_9b.png" width="500">
+
+ [Complete code - Part_9 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_9)
