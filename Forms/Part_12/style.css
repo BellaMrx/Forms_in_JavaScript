@@ -1,0 +1,12 @@
+input:required:invalid, input:focus:invalid {
+    border: 2px solid red;
+}
+input:required:valid {
+   border: 2px solid lightgreen;
+}
+#register {
+   margin: 20px;
+}
+#email-error {
+   display: none;
+}

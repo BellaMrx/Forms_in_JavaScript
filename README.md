@@ -454,3 +454,220 @@ The programmatic resetting of a form:
 It should be noted that submitting a form using the `submit()` method does not work if there is an element with the name `submit` in the form. This is because you can also access the individual form elements within a form using the name.
 
  <img src="images/FormsJS_Part_9a.png" width="500"> <img src="images/FormsJS_Part_9b.png" width="500">
+
+-----------------------------------------------------------------------
+
+## Validate form inputs
+
+The validation of input fields is much easier with HTML5 because some **native** validation options are already offered there.
+The term **native** in the context of programming languages means something like “built into the language” or “included in the scope of the language”. Native validation in HTML5 therefore means that it is already included in the language and does not have to be implemented by JavaScript.
+
+The next example shows a simple registration form that uses appropriate attributes to trigger native validation:
+
+ [Complete code - Part_10 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_10)
+
+  ```
+   ...
+   <form id="register" name="register" method="post" action="register.html">
+     <div class="form-group">
+       <label for="username">User name:</label>
+       <input type="text" id="username" name="username" required class="form-control" >
+     </div>
+     <div class="form-group">
+       <label for="email">E-Mail:</label>
+       <input type="email" id="email" name="email" required class="form-control" >
+     </div>
+     <div class="form-group">
+       <label for="url">Website:</label>
+       <input type="url" id="website" name="website" class="form-control" >
+     </div>
+     <div class="form-group">
+       <label for="age">Age:</label>
+       <input type="number" id="age" name="age" min="18" max="99" value="18" class="form-control" >
+     </div>
+     <button type="submit" id="submit" name="submit" class="btn btn-primary btn-block">Register here</button>
+   </form>
+   ...
+  ```
+
+The fields for entering the user name and e-mail address are marked as mandatory fields via the 'required' attribute. Only e-mail addresses can be entered using the 'type' attribute with the value 'e-mail'. The field for entering the website only allows the entry of valid URLs via the value of the 'type' attribute and the field for entering the age only allows the entry of numerical values (via the value 'number' of the 'type' attribute) in a specific value range (which is defined by the attributes 'min' and 'max').
+
+Without a line of JavaScript, there is already a functioning validation for such standard cases. If you now leave the field for entering the e-mail address empty and try to submit the form, the browser generates a corresponding error message and applies the CSS rules defined for the CSS pseudo class `:invalid`.
+For form elements with valid values, the CSS rules for the CSS pseudo class `:valid` are applied accordingly:
+
+  ```
+   input:required:invalid, input:focus:invalid {
+    border: 2px solid red;
+   }
+   input:required:valid {
+    border: 2px solid lightgreen;
+   }
+   ...
+  ```
+
+ <img src="images/FormsJS_Part_10.png" width="500">
+
+However, validation without JavaScript is not as flexible. For example, if you want to check whether the user name entered is already taken, this is not possible with HTML alone. The same applies if, for example, two input fields contain the same value.
+
+Thanks to the [Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation), the native validation of HTML5 can also be controlled via JavaScript, allowing validation information to be accessed and validated much more flexibly. For this purpose, the *Constraint Validation API* defines various properties and methods that are available for forms and form elements:
+
+| Property            | Description  |
+| ------------------- | ------------ | 
+| `willValidate` 	    | Provides information on whether validation is activated for a form element or not. Set to `true` by default. If, on the other hand, a form element is deactivated via the `disabled` attribute, this property contains the value `false`. For other elements such as the `<div>` element, the property returns the value `undefined`. | 
+| `validity` 		      | Contains an object of type `ValidityState`, which contains detailed information about the validity of the data entered in the corresponding form element. | 
+| `validationMessage` | Contains the validation message that the browser displays in the event that the data entered is invalid. This message differs depending on the browser, e.g. Firefox returns the value “Please fill in this field”. | 
+
+The `willValidate` property provides information on whether validation is activated for a form element or not, the `validationMessage` property contains a corresponding error message in the event of a validation error, and the `validity` property can be used to draw conclusions about the cause of the error. This property contains an object with various properties, each of which contains Boolean values. For example, `valueMissing` for missing entries, `tooShort` or `tooLong` for values that fall below or exceed the minimum length, or `rangeUnderflow` and `rangeOverflow` for values that lie outside a defined value range.
+
+| Property            | Description  |
+| ------------------- | ------------ |
+| `valid` | Provides an indication of whether an input field contains an error or not. |
+| `valueMissing` | Provides an indication of whether an input field is a mandatory field but does not contain a value. |
+| `typeMismatch` | Provides an indication of whether the required type of input field is not fulfilled by the value entered, e.g. e-mail address. |
+| `patternMismatch` | Provides an indication of whether the entered value corresponds to the defined pattern or not. |
+| `tooLong` | Provides an indication of whether the entered value is too long. |
+| `tooShort` | Provides an indication of whether the entered value is too short. |
+| `rangeUnderflow` | Provides an indication of whether the entered value is below the defined value range. |
+| `rangeOverflow` | Provides an indication of whether the entered value is above the defined value range. |
+| `stepMismatch` | Returns an indication of whether the entered value corresponds to the definition of the `step` attribute. |
+| `badInput` | Provides an indication of whether the entered value is invalid.  |
+| `customError` | Provides an indication of whether the entered value triggers a user-defined error. |
+
+The next example shows the use of native validation in JavaScript:
+
+  ```
+   function init() {
+       const emailElement = document.getElementById('email');
+       emailElement.addEventListener('change', validateEmail);
+     }
+  
+     function validateEmail(e) {
+       const event = (e ? e : window.event);             // Event
+       const emailElement = (event.target                // Target element
+         ? event.target
+         : event.srcElement);
+       console.log(emailElement.willValidate);           // true
+       console.log(emailElement.validity);               // ValidityState: ...
+       console.log(emailElement.validity.valueMissing);  // ... Value available?
+       console.log(emailElement.validity.valid);         // ... value valid?
+       console.log(emailElement.validationMessage);      // Validation message
+     }
+  
+     document.addEventListener('DOMContentLoaded', init);
+  ```
+
+An event listener for the `change` event was registered for the text field for entering the e-mail address. Some of the above-mentioned properties are then output within the event listener.
+
+The JavaScript code can be extended so that the validation message is displayed in a corresponding container element or not, depending on whether the input field contains a valid value:
+
+ [Complete code - Part_11 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_11)
+
+  ```
+    ...  
+     function validateEmail(e) {
+       ...
+
+       const errorContainer = document.getElementById('email-error');
+       const messageContainer = errorContainer.querySelector('.error-message');
+       if(!emailElement.validity.valid) {
+         messageContainer.textContent = emailElement.validationMessage;
+         errorContainer.style.display = 'block';
+       } else {
+         messageContainer.textContent = '';
+         errorContainer.style.display = 'none';
+       }
+     }
+    ...
+  ```
+
+ <img src="images/FormsJS_Part_11.png" width="500">
+
+
+In addition to the properties mentioned, forms and form elements also have a number of methods for validation thanks to the **Constraint Validation API**. For example, the `checkValidity()` method can be used to check whether an individual form element or an entire form is valid. The `reportValidity()` method ensures that the validation message is also displayed in the event of an error, and the `setCustomValidity()` method also allows you to define your own validation messages.
+
+The next example shows the use of the `setCustomValidity()` method:
+
+ [Complete code - Part_12 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_12)
+
+  ```
+   function init() {
+       const emailElement = document.getElementById('email');
+       const emailElement2 = document.getElementById('email2');
+       emailElement.addEventListener('change', validateEmail);
+       emailElement2.addEventListener('change', validateEmail);
+     }
+  
+     function validateEmail(e) {
+       const emailElement = document.getElementById('email');
+       const emailElement2 = document.getElementById('email2');
+       if (emailElement.value !== emailElement2.value) {
+         emailElement.setCustomValidity('Emails must correspond.');
+         emailElement2.setCustomValidity('Emails must correspond.');
+       } else {
+         emailElement.setCustomValidity('');
+         emailElement2.setCustomValidity('');
+       }
+  
+       const errorContainer = document.getElementById('email-error');
+       const messageContainer = errorContainer.querySelector('.error-message');
+       if(!emailElement.validity.valid) {
+         messageContainer.textContent = emailElement.validationMessage;
+         errorContainer.style.display = 'block';
+       } else {
+         messageContainer.textContent = '';
+         errorContainer.style.display = 'none';
+       }
+     }
+  
+     document.addEventListener('DOMContentLoaded', init);
+  ```
+
+A second text field has been added to the form here, in which the user should enter their email address a second time to check the input. The function `validateEmail` is registered at both input fields as an event listener for the `change` event and checks whether the content is identical. If this is not the case, a corresponding error message is set via `setCustomValidity()`.
+
+ <img src="images/FormsJS_Part_12.png" width="500">
+
+
+However, if you only want to trigger native validation with JavaScript when a form is submitted, you must set the `noValidate` property to `true`. By default, native validation is only carried out before the submit event is triggered. If you set the `noValidate` property to `true`, manb deactivates the standard output of the browser.
+
+ [Complete code - Part_13 - click here](https://github.com/BellaMrx/Forms_in_JavaScript/tree/main/Forms/Part_13)
+
+  ```
+   function init() {
+       const registerForm = document.getElementById('register');
+       registerForm.noValidate = true;       // Native validation off
+       registerForm.addEventListener('submit', validateForm);
+     }
+  
+     document.addEventListener('DOMContentLoaded', init);
+  
+     function validateForm(e) {
+       const event = (e ? e : window.event);   // Event
+       const form = (event.target              // Target element
+         ? event.target
+         : event.srcElement);
+       let formIsValid = true;                 // Validity of the form
+       const formElements =                    // Form elements that ...
+         form.querySelectorAll(                // ... native validation ...
+           'input, textarea, select');         // ... support.
+       for (let i = 0; i < formElements.length; i++) {
+         const formElement = formElements[i];
+         if (formElement.willValidate !== 'undefined') {
+           formElement.checkValidity();
+         } else {
+           // Browser does not support
+           // native HTML5 validation
+         }
+         if (!formElement.validity.valid) {    // If value is not valid ...
+           formIsValid = false;                // ... form data not valid.
+         }
+       }
+       if (!formIsValid) {                     // If form data is not valid ...
+         if (event.preventDefault) {           // ...
+           event.preventDefault();             // ... prevent standard actions.
+         }
+       }
+       return formIsValid;
+     }
+  ```
+
+The form can only be sent as soon as all details are correct here the e-mail address.
