@@ -548,7 +548,7 @@ The next example shows the use of native validation in JavaScript:
          : event.srcElement);
        console.log(emailElement.willValidate);           // true
        console.log(emailElement.validity);               // ValidityState: ...
-       console.log(emailElement.validity.valueMissing);  // ... Value available?
+       console.log(emailElement.validity.valueMissing);  // ... value available?
        console.log(emailElement.validity.valid);         // ... value valid?
        console.log(emailElement.validationMessage);      // Validation message
      }
